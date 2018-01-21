@@ -2,10 +2,12 @@
 
 ---
 
-**Bitcoin End Point seeker** is an implementation of the seeking end points of bitcoin.
+**Bitcoin end Point Seeker** is an implementation of the seeking end points of bitcoin.
 Still in a beta state.
 
 [Try it in the browser](http://160.16.197.85:3000/?address=14WSZksP2RKkAPZbedgqc3YVa5Lp82weLn&call=4)
+
+My intention is to detect the colackers.
 
 ## Install
 
