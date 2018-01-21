@@ -5,7 +5,16 @@
 **Bitcoin End Point seeker** is an implementation of the seeking end points of bitcoin.
 Still in a beta state.
 
-Try it in the browser: https://yusukeshimizu.github.io/Candy_Pitch/#/
+[Try it in the browser](http://160.16.197.85:3000/?address=14WSZksP2RKkAPZbedgqc3YVa5Lp82weLn&call=4)
+
+## Install
+
+```
+$ git clone https://github.com/YusukeShimizu/BitcoinEndPointSeeker.git
+$ cd BitcoinEndPointSeeker
+$ npm install
+$ node candy.js
+```
 
 ## Disclaimer
 
