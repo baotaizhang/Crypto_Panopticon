@@ -7,6 +7,7 @@ var util = require('util');
 var blockchainAPI = require(__dirname + '/blockchainAPI.js');
 var API = new blockchainAPI;
 var _ = require('underscore');
+var moment = require("moment");
 var limit = {};
 
 function blockchain(){
@@ -22,7 +23,7 @@ blockchain.prototype.clear = function clear(socket){
 
 }
 
-blockchain.prototype.chase = function chase(address, socket){
+blockchain.prototype.chase = function chase(address, socket, time){
     var self = this;
 
     if(socket){
@@ -42,6 +43,8 @@ blockchain.prototype.chase = function chase(address, socket){
                 link : [] 
             };
 
+            var previousTime = time ? moment.unix(time) : moment("2013-02-08T09:30:26");
+
             gragh_data.nodes.push({
                 id : data.address,
                 group : 1,
@@ -49,7 +52,7 @@ blockchain.prototype.chase = function chase(address, socket){
    
             data.txs.forEach(function(tx){
 
-                if(tx.out){
+                if(tx.out && moment.unix(tx.time).diff(previousTime) > 0){
                     tx.out.some(function(txouts){
 
                         gragh_data.nodes.push({
@@ -64,7 +67,7 @@ blockchain.prototype.chase = function chase(address, socket){
                         });                             
                         // recursive call
                         if(!limit[socket.id] == 0){
-                            self.chase(txouts.addr, socket);
+                            self.chase(txouts.addr, socket, tx.time);
                         }
                         
                     });
