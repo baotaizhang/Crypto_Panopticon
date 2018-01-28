@@ -21,11 +21,13 @@
         }
     </style>
     <body>
-        <h1>Bitcoin Node Checker</h1>
+        <h1>Bitcoin/NEM Node Checker</h1>
         
         <p>You can request like following.<br>
+        <p>下記のようにurlに記載することで、BTC/NEMの送金履歴を可視化します</p>
         <p>http://160.16.197.85:3000/? + address = [your address] + & call = [number of recursive calling]</p>
-        <p>Cf. http://160.16.197.85:3000/?address=14WSZksP2RKkAPZbedgqc3YVa5Lp82weLn&call=4</p>
+        <p>Cf BTC. http://160.16.197.85:3000/?address=14WSZksP2RKkAPZbedgqc3YVa5Lp82weLn&call=4</p>
+        <p>Cf NEM. http://160.16.197.85:3000/?address=NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG&call=10&nemtrace=true</p>
         <p>For more detail, see --> <a href="https://github.com/YusukeShimizu/BitcoinEndPointSeeker"><img border="0" src="Octocat.jpg" width="40" height="40"><br></a></p>
         <svg width="960" height="600" id="chase"></svg>
         <script src="candy.js"></script>

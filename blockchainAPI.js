@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var async = require('async');
 var request = require('request');
+var URL = require('url');
 
 var publicAccess = function() {
 
@@ -91,5 +92,28 @@ publicAccess.prototype.address = function(retry, address, cb) {
     this.q.push({name: 'address', func: wrapper});
 
 };
+
+publicAccess.prototype.nemtrace = function(retry, address, cb) {
+
+    var args = arguments;
+
+    var wrapper = function(finished) {
+
+        var handler = function(err, data) {
+            if (!err) {
+                var url = URL.parse(data.request.href, true);
+                cb(JSON.parse(data.body), url.query.address);
+            } else {
+                cb(err, null);
+            }
+        };
+
+        request.get({url : "http://go.nem.ninja:7890/account/transfers/all?address=" + address}, this.errorHandler(this.address, args, retry, 'address', handler, finished));
+    }.bind(this);
+
+    this.q.push({name: 'address', func: wrapper});
+
+};
+
 
 module.exports = publicAccess;

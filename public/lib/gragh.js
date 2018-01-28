@@ -6,7 +6,7 @@
     var gragh = {};
     
     gragh.append = function(data){
-        update(data.link, data.nodes);
+        update(data.link, data.nodes, data.isnem);
     }
 
     var colors = d3.scaleOrdinal(d3.schemeCategory10);
@@ -28,7 +28,7 @@
         .velocityDecay(0.4);
 
 
-    function update(links, nodes) {
+    function update(links, nodes, isnem) {
         link.remove();
         node.remove();
 
