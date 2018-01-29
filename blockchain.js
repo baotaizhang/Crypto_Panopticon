@@ -10,6 +10,19 @@ var _ = require('underscore');
 var moment = require("moment");
 var limit = {};
 var prev;
+var target = [
+    "NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG",
+    "NCM6WE7SJFDVTLSPTMZGBUZUETDYINITILS3DCIZ",
+    "NDZZJBH6JZPYSWRPRYHALLWMITWHOYTQGXR53HAW",
+    "NA7SZ75KF6ZKK267TRKCJDJBWP5JKIC2HA5PXCKW",
+    "NDODXOWEIZGJSMAEURXACF4IEHC2CB7Q6T56V7SQ",
+    "NDDZVF32WB3LWRNG3IVGHCOCAZWENCNRGEZJVCJI",
+    "NB4QJJCLTZWVFWRFBKEMFOONOZFDH3V5IDK3G524",
+    "NCTWFIOOVITRZYSYIGQ3PEI3IMVB25KMED53EWFQ",
+    "NA6JSWNF24Y7DVIUVPKRNAY7TPOFJJ7G2URL7KU5",
+    "NBKLQYXEIVEEGARYPUM62UJIFHA3Y6R4LAPU6NP4",
+    "NCF6IA5ZNKIUXE3COV7WK23EIOBEPDV5DJFZQTTH"
+];
 
 function blockchain(){
     if (!(this instanceof blockchain)){
@@ -49,27 +62,38 @@ blockchain.prototype.chase = function chase(address, socket, time){
                 gragh_data.nodes.push({
                     id : prev,
                     group : 1,
+                    size : 5
                 });
 
                 data.data.forEach(function(transaction){
-                    
-                    gragh_data.nodes.push({
-                        id : transaction.transaction.recipient,
-                        group : 2,
-                        
-                    });
+                                      
+                    if(target.indexOf(transaction.transaction.recipient) >= 0){
+                        gragh_data.nodes.push({
+                            id : transaction.transaction.recipient,
+                            group : 2,
+                            size : 7
+                        });
+                    }else{
+                        gragh_data.nodes.push({
+                            id : transaction.transaction.recipient,
+                            group : 2,
+                            size : 5
+                        });
+                    }
+
                     gragh_data.link.push({
                         source : prev,
                         target : transaction.transaction.recipient
                     });                             
               
                     // recursive call
-                    if(!limit[socket.id] == 0 && prev != transaction.transaction.recipient){
+                    if(!limit[socket.id] == 0){
                         self.chase(transaction.transaction.recipient, socket);
                     }                    
                 
                 })
             }
+            
             gragh_data.socket = socket.id;
             gragh_data.nodes = _.uniq(gragh_data.nodes, 'id');
             gragh_data.isnem = true;
@@ -89,6 +113,7 @@ blockchain.prototype.chase = function chase(address, socket, time){
                 gragh_data.nodes.push({
                     id : data.address,
                     group : 1,
+                    size : 5
                 });
    
                 data.txs.forEach(function(tx){
@@ -99,8 +124,8 @@ blockchain.prototype.chase = function chase(address, socket, time){
                             gragh_data.nodes.push({
                                 id : txouts.addr,
                                 group : 2,
-                                value : txouts.value
-                        
+                                value : txouts.value,
+                                size : 5                      
                             });
                             gragh_data.link.push({
                                 source : data.address,

@@ -53,7 +53,7 @@ publicAccess.prototype.errorHandler = function(caller, receivedArgs, retryAllowe
                     
             }
 
-        }else if(result.statusCode == 500){
+        }else if(result.statusCode == 400){
 
             console.log('API request error : ' + result.body);
             return;

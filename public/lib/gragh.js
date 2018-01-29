@@ -49,7 +49,7 @@
             .selectAll("circle")
             .data(store.nodes)
             .enter().append("circle")
-            .attr("r", 5)
+            .attr("r", function(d) { return d.size; })
             .attr("fill", function(d) { return colors(d.group); })
             .on("click", function(d) {alert(d.id)})
             .call(d3.drag()
