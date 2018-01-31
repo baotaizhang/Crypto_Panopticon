@@ -14,7 +14,8 @@ var publicAccess = function() {
     _.bindAll(this, 
         'retry', 
         'errorHandler', 
-        'address'
+        'address',
+        'nemtrace'
     );
 };
 
@@ -53,7 +54,7 @@ publicAccess.prototype.errorHandler = function(caller, receivedArgs, retryAllowe
                     
             }
 
-        }else if(result.statusCode == 400){
+        }else if(result.statusCode != 200){
 
             console.log('API request error : ' + result.body);
             return;
@@ -102,16 +103,18 @@ publicAccess.prototype.nemtrace = function(retry, address, cb) {
         var handler = function(err, data) {
             if (!err) {
                 var url = URL.parse(data.request.href, true);
-                cb(JSON.parse(data.body), url.query.address);
+                var data = JSON.parse(data.body);
+                cb(data, url.query.address);
+
             } else {
                 cb(err, null);
             }
         };
 
-        request.get({url : "http://go.nem.ninja:7890/account/transfers/all?address=" + address}, this.errorHandler(this.address, args, retry, 'address', handler, finished));
+        request.get({url : "http://go.nem.ninja:7890/account/transfers/outgoing?address=" + address}, this.errorHandler(this.nemtrace, args, retry, 'nemtrace', handler, finished));
     }.bind(this);
 
-    this.q.push({name: 'address', func: wrapper});
+    this.q.push({name: 'nemtrace', func: wrapper});
 
 };
 

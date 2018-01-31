@@ -32,9 +32,7 @@ function blockchain(){
 };
 
 blockchain.prototype.clear = function clear(socket){
-
     limit[socket.id] = 0;
-
 }
 
 blockchain.prototype.chase = function chase(address, socket, time){
@@ -66,16 +64,18 @@ blockchain.prototype.chase = function chase(address, socket, time){
                 });
 
                 data.data.forEach(function(transaction){
+
+                    var tx = transaction.transaction.otherTrans ? transaction.transaction.otherTrans : transaction.transaction; 
                                       
-                    if(target.indexOf(transaction.transaction.recipient) >= 0){
+                    if(target.indexOf(tx.recipient) >= 0){
                         gragh_data.nodes.push({
-                            id : transaction.transaction.recipient,
+                            id : tx.recipient,
                             group : 2,
                             size : 7
                         });
                     }else{
                         gragh_data.nodes.push({
-                            id : transaction.transaction.recipient,
+                            id : tx.recipient,
                             group : 2,
                             size : 5
                         });
@@ -83,12 +83,12 @@ blockchain.prototype.chase = function chase(address, socket, time){
 
                     gragh_data.link.push({
                         source : prev,
-                        target : transaction.transaction.recipient
+                        target : tx.recipient
                     });                             
               
                     // recursive call
                     if(!limit[socket.id] == 0){
-                        self.chase(transaction.transaction.recipient, socket);
+                        self.chase(tx.recipient, socket);
                     }                    
                 
                 })
