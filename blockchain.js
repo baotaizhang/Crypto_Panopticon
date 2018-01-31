@@ -70,8 +70,8 @@ blockchain.prototype.chase = function chase(address, socket, time){
                     if(target.indexOf(tx.recipient) >= 0){
                         gragh_data.nodes.push({
                             id : tx.recipient,
-                            group : 2,
-                            size : 7
+                            group : 1,
+                            size : 5
                         });
                     }else{
                         gragh_data.nodes.push({
