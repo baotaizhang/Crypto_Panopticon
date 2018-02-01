@@ -94,7 +94,7 @@ publicAccess.prototype.address = function(retry, address, cb) {
 
 };
 
-publicAccess.prototype.nemtrace = function(retry, address, cb) {
+publicAccess.prototype.nemtrace = function(retry, address,count, cb) {
 
     var args = arguments;
 
@@ -104,12 +104,21 @@ publicAccess.prototype.nemtrace = function(retry, address, cb) {
             if (!err) {
                 var url = URL.parse(data.request.href, true);
                 var data = JSON.parse(data.body);
-                cb(data, url.query.address);
+                var address = url.query.address;
+                if(data.data.length == 25 && count < 3){
+                    address += "&id=" + data["data"][24]["meta"]["id"];      
+                    count++;
+                    this.nemtrace(retry, address, count, function(result) {
+                        cb(data.data.concat(result), url.query.address);
+                    })
+                }else{
+                    cb(data.data, url.query.address);
+                }
 
             } else {
                 cb(err, null);
             }
-        };
+        }.bind(this);
 
         request.get({url : "http://go.nem.ninja:7890/account/transfers/outgoing?address=" + address}, this.errorHandler(this.nemtrace, args, retry, 'nemtrace', handler, finished));
     }.bind(this);
