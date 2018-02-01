@@ -84,6 +84,12 @@ blockchain.prototype.chase = function chase(address, socket, time){
                     link : [] 
                 };
 
+                gragh_data.nodes.push({
+                    id : prev,
+                    group : 1,
+                    size : 10
+                });
+
                 data.forEach(function(transaction){
 
                     var tx = transaction.transaction.otherTrans ? transaction.transaction.otherTrans : transaction.transaction; 
