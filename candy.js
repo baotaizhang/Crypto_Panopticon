@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var port = process.env.PORT || 3050;
+var port = process.env.PORT || 3000;
 var blockchainOBJ = require(__dirname + '/blockchain.js');
 var blockchain = new blockchainOBJ;
 
