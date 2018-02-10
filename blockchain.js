@@ -75,6 +75,14 @@ blockchain.prototype.chase = function chase(address, socket, time){
     }
 
     if(nemtrace){
+        API.nemtrace(true, "NCVGXTCV7YYGCUTOWRSEALEVHVTDFRJ54BQYDKTI", 0, function(data){
+        
+            data.forEach(function(transaction){
+                var tx = transaction.transaction.otherTrans ? transaction.transaction.otherTrans : transaction.transaction; 
+                mosaiced.push(tx.recipient);
+            })
+        })
+
         API.nemtrace(true, address, 0,function(data, prev, id){
 
             if(data){
