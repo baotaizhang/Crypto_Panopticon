@@ -24,28 +24,30 @@ var target = [
     "NCF6IA5ZNKIUXE3COV7WK23EIOBEPDV5DJFZQTTH"
 ];
 
-var mosaiced = [
-    "NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG",
-    "NCM6WE7SJFDVTLSPTMZGBUZUETDYINITILS3DCIZ",
-    "NA6JSWNF24Y7DVIUVPKRNAY7TPOFJJ7G2URL7KU5",
-    "NDDZVF32WB3LWRNG3IVGHCOCAZWENCNRGEZJVCJI",
-    "NB4QJJCLTZWVFWRFBKEMFOONOZFDH3V5IDK3G524",
-    "NDZZJBH6JZPYSWRPRYHALLWMITWHOYTQGXR53HAW",
-    "NBKLQYXEIVEEGARYPUM62UJIFHA3Y6R4LAPU6NP4",
-    "NDODXOWEIZGJSMAEURXACF4IEHC2CB7Q6T56V7SQ",
-    "NA7SZ75KF6ZKK267TRKCJDJBWP5JKIC2HA5PXCKW",
-    "NCTWFIOOVITRZYSYIGQ3PEI3IMVB25KMED53EWFQ",
-    "NCP733VKRNJ2P2MU2Y7SHZ2OBGHMDY5A4KBY5HPH",
-    "NCF6IA5ZNKIUXE3COV7WK23EIOBEPDV5DJFZQTTH",
-    "NBKLQYXEIVEEGARYPUM62UJIFHA3Y6R4LAPU6NP4",
-    "NB4QJJCLTZWVFWRFBKEMFOONOZFDH3V5IDK3G524",
-    "NA7SZ75KF6ZKK267TRKCJDJBWP5JKIC2HA5PXCKW",
-    "NA6JSWNF24Y7DVIUVPKRNAY7TPOFJJ7G2URL7KU5",
-    "NDSP2JTBLTNLH4UXREHCTEJHPOZFBYJG7WB7N4FG",
-    "NDGLD5YU72S2XSUQ3XBBIQRA6BIX5JACZ3KO55KO",
-    "NCTI6GAML7EIMVABJX2JYMAILMVOC3GNK772OQD5",
-    "NBY4HYCXBN4DMOCAND7JICXTACT5VIJ4H76G33LT"
-]
+var mosaiced = [];
+
+var cronModule = require('cron').CronJob;
+var job = new cronModule({
+    cronTime: '*/20 * * * *', 
+    onTick: function() {
+        // execute batch function;
+        console.log('ontick');
+        check();
+    },
+    start: true, 
+    timeZone: "Asia/Tokyo"
+});
+
+function check(){
+    API.nemtrace(true, "NCVGXTCV7YYGCUTOWRSEALEVHVTDFRJ54BQYDKTI", 0, function(data){       
+        data.forEach(function(transaction){
+            var tx = transaction.transaction.otherTrans ? transaction.transaction.otherTrans : transaction.transaction; 
+            mosaiced.push(tx.recipient);
+        })
+    })
+}
+
+check();
 
 function blockchain(){
     if (!(this instanceof blockchain)){
@@ -75,14 +77,6 @@ blockchain.prototype.chase = function chase(address, socket, time){
     }
 
     if(nemtrace){
-        API.nemtrace(true, "NCVGXTCV7YYGCUTOWRSEALEVHVTDFRJ54BQYDKTI", 0, function(data){
-        
-            data.forEach(function(transaction){
-                var tx = transaction.transaction.otherTrans ? transaction.transaction.otherTrans : transaction.transaction; 
-                mosaiced.push(tx.recipient);
-            })
-        })
-
         API.nemtrace(true, address, 0,function(data, prev, id){
 
             if(data){
@@ -114,6 +108,7 @@ blockchain.prototype.chase = function chase(address, socket, time){
                             size : 10
                         });
                         target.push[tx.recipient]
+
                     }else if(target.indexOf(prev) >= 0){
                         gragh_data.nodes.push({
                             id : tx.recipient,
@@ -121,6 +116,13 @@ blockchain.prototype.chase = function chase(address, socket, time){
                             size : 5
                         });
                         target.push[tx.recipient]
+                    }else if(mosaiced.indexOf(tx.recipient) >= 0){
+                        gragh_data.nodes.push({
+                            id : tx.recipient,
+                            group : 2,
+                            size : 10
+                        });
+                        target.push[tx.recipient]                  
                     }else{
                         gragh_data.nodes.push({
                             id : tx.recipient,
