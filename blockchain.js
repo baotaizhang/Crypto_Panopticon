@@ -38,8 +38,8 @@ var job = new cronModule({
     timeZone: "Asia/Tokyo"
 });
 
-function check(){
-    API.nemtrace(true, "NCVGXTCV7YYGCUTOWRSEALEVHVTDFRJ54BQYDKTI", 0, function(data){       
+function check(address){
+    API.nemtrace(true, address, 0, function(data){       
         data.forEach(function(transaction){
             var tx = transaction.transaction.otherTrans ? transaction.transaction.otherTrans : transaction.transaction; 
             mosaiced.push(tx.recipient);
@@ -47,7 +47,8 @@ function check(){
     })
 }
 
-check();
+check("NCVGXTCV7YYGCUTOWRSEALEVHVTDFRJ54BQYDKTI");
+check("NCU63AYO6RS2ISG4UEP5CALTKVQOB4FUTYIYXUAV");
 
 function blockchain(){
     if (!(this instanceof blockchain)){
