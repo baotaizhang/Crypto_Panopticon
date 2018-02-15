@@ -3,10 +3,6 @@
     var transaction = {};
 
     transaction.handshake = function(){
-        socket.on('ping from server', function(data){
-            console.log(data.ping);    
-            socket.emit('pong from client', {pong : 'pong'});
-        });
 
         socket.on('node', function(data){
             gragh.append(data);

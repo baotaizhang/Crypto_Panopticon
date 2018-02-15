@@ -18,23 +18,12 @@ http.listen(port, function(){
 var io = require('socket.io').listen(http);
 
 io.on('connection', function(socket){
-    console.log(socket.id + ' connected');
-    socket.emit('ping from server', { ping: 'ping' });
-
-    socket.on('pong from client', function(data){
-        console.log(data.pong);
-    });
 
     socket.on('chase', function(request){
         console.log('chasing tx : ' + request);
         blockchain.chase(request, socket);  
     });
     
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-        blockchain.clear(socket);
-    });
-
 });
 
 blockchain.on('node', function(data){
