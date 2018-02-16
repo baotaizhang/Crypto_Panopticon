@@ -20,7 +20,6 @@ var io = require('socket.io').listen(http);
 io.on('connection', function(socket){
 
     socket.on('chase', function(request){
-        console.log('chasing tx : ' + request);
         blockchain.chase(request, socket);  
     });
     

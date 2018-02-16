@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Bitcoin Node Checker</title>
+        <title>Node Checker</title>
         <script type="text/javascript" src="d3/d3.min.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
@@ -25,35 +25,21 @@
         }
     </style>
     <body>
-        <h1>Bitcoin/NEM Node Checker</h1>
+        <h1>Node Checker</h1>
         
-        <p>You can request like following.By clicking node you can see the recipients.<br>
-        <p>BTC/NEMの送金履歴を可視化します。nodeをクリックすることで、アドレスを確認可能です。 リアルタイムでたどっているので、少し時間かかります。</p>
-        <p>http://pointseeker.bruwbird.com/? + address = [your address] + & call = [number of recursive calling]</p>
-        <p>Cf BTC. http://pointseeker.bruwbird.com/?address=14WSZksP2RKkAPZbedgqc3YVa5Lp82weLn&call=4</p>
-        <p>Cf NEM. http://pointseeker.bruwbird.com/?address=NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG&call=100&nemtrace=true</p>
-        <p>For more detail, see --> <a href="https://github.com/YusukeShimizu/BitcoinEndPointSeeker"><img border="0" src="Octocat.jpg" width="40" height="40"><br></a></p>
-        <p>NEM盗難アカウント監視ページになりつつあります。</p>
-        <ul>
-            <li>大きい青 NEM財団のmosaicつきアカウント。</li>
-            <li>青 クラッカーからの受信後に送信しているか、NEM財団mosaicから受信しているアカウント。</li>
-            <li>オレンジ 何かしら繋がりがあるアカウント</li>
-            <li>大きいオレンジ　NEM財団mosaicから受信しているアカウント</li>
-        </ul>
-
+        <p>NEMの送金履歴を可視化します。nodeをクリックすることで、アドレスを確認可能です。 リアルタイムでたどっているので、少し時間かかります。</p>
+        <p>Cf http://pointseeker.bruwbird.com/?address=NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG&call=100&nemtrace=true</p>
+        <a href="https://github.com/YusukeShimizu/BitcoinEndPointSeeker"><img border="0" src="Octocat.jpg" width="40" height="40"><br></a>
         <svg width="960" height="600" id="chase"></svg>
         <script src="candy.js"></script>
         <script src="lib/transaction.js"></script>
         <script src="lib/gragh.js"></script>
 
-
-        <h2>Updates</h2>
-        <p>20180127 time filtering</p>
-        <p>20180128 NEM add</p>
+        <p>寄付はBTCアドレスに-> 3JAXZuhEbnyVdn4EpMHKBRzZ2MykrktrDv<br>
+        追跡目的にのみ、使います</p>
 
         <h2>License</h2>
         <p>Copyright (c) 2018, Yusuke Shimizu (MIT License).</p>
 
- 
     </body>
 </html>
