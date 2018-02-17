@@ -7,6 +7,7 @@
         socket.on('node', function(data){
             gragh.append(data);
         });
+
     };
 
     transaction.chase = function (){
