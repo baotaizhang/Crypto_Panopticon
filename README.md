@@ -2,7 +2,7 @@
 
 ---
 
-**Crypto_Panopticon** is an implementation of the platform of thieves each other.
+**Crypto_Panopticon** is an implementation of the platform to detect thieves.
 Still in a beta state.
 
 ## Install
