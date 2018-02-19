@@ -1,17 +1,15 @@
-# Bitcoin End Point Seeker
+# Crypto_Panopticon
 
 ---
 
-**Bitcoin end Point Seeker** is an implementation of the seeking end points of bitcoin.
+**Crypto_Panopticon** is an implementation of the platform of thieves each other.
 Still in a beta state.
-
-[Try it in the browser](http://160.16.197.85:3000/?address=14WSZksP2RKkAPZbedgqc3YVa5Lp82weLn&call=4)
 
 ## Install
 
 ```
-$ git clone https://github.com/YusukeShimizu/BitcoinEndPointSeeker.git
-$ cd BitcoinEndPointSeeker
+$ git clone https://github.com/YusukeShimizu/Crypto_Panopticon.git
+$ cd Crypto_Panopticon
 $ npm install
 $ node candy.js
 ```
@@ -19,7 +17,7 @@ $ node candy.js
 ## Disclaimer
 
 This app does not guarantee you against the Correctness.
-You and you alone are responsible for seeking your bitcoin.
+You and you alone are responsible for the result.
 
 ## License
 
