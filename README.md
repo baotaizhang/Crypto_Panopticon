@@ -11,6 +11,7 @@ Still in a beta state.
 $ git clone https://github.com/YusukeShimizu/Crypto_Panopticon.git
 $ cd Crypto_Panopticon
 $ npm install
+$ npm run build
 $ node candy.js
 ```
 
