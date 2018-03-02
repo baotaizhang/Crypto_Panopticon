@@ -18,11 +18,9 @@ http.listen(port, function(){
 var io = require('socket.io').listen(http);
 
 io.on('connection', function(socket){
-
     socket.on('chase', function(request){
         blockchain.chase(request, socket);  
     });
-    
 });
 
 blockchain.on('node', function(data){
