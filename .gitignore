@@ -6,3 +6,6 @@ candyConfig/
 
 # ignore node_modules
 node_modules/
+
+# ignore compiled
+Public/bundle.js
