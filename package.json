@@ -17,12 +17,15 @@
     "moment": "^2.20.1",
     "request": "^2.83.0",
     "socket.io": "^2.0.4",
-    "underscore": "^1.8.3",
     "url": "^0.11.0",
     "vue": "^2.5.13",
     "webpack-cli": "^2.0.10"
   },
   "devDependencies": {
+    "css-loader": "^0.28.10",
+    "d3": "^4.13.0",
+    "socket.io-client": "^2.0.4",
+    "underscore": "^1.8.3",
     "vue-loader": "^14.1.1",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^4.0.1"

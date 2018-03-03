@@ -2,44 +2,13 @@
     <head>
         <meta charset="utf-8">
         <title>Node Checker</title>
-        <script type="text/javascript" src="d3/d3.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-        <script src="http://d3js.org/d3-selection-multi.v1.js"></script>
     </head>
-    <style>
-
-        .links line {
-            stroke: #999;
-            stroke-opacity: 0.1;
-        }
-
-        .nodes circle {
-            stroke: #fff;
-            stroke-width: 0.3px;
-        }
-        .nodes text {
-            pointer-events: none;
-            font: 10px sans-serif;
-        }
-    </style>
     <body>
-
-        
-        <h1>Node Checker</h1>
-        
-        <p>NEMの送金履歴を可視化します。nodeをクリックすることで、アドレスを確認可能です。 リアルタイムでたどっているので、少し時間かかります。</p>
-        <p>Cf http://pointseeker.bruwbird.com/?address=NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG&call=100&nemtrace=true</p>
-        <a href="https://github.com/YusukeShimizu/BitcoinEndPointSeeker"><img border="0" src="Octocat.jpg" width="40" height="40"><br></a>
-        <svg width="960" height="600" id="chase"></svg>
+        <div id='candy'>
+            <candy-header></candy-header>
+            <candy-candy></candy-candy>
+            <candy-footer></candy-footer>
+        </div>
         <script src="bundle.js"></script>
-
-        <p>寄付はBTCアドレスに-> 3JAXZuhEbnyVdn4EpMHKBRzZ2MykrktrDv<br>
-        追跡目的にのみ、使います</p>
-
-        <h2>License</h2>
-        <p>Copyright (c) 2018, Yusuke Shimizu (MIT License).</p>
-
     </body>
 </html>
