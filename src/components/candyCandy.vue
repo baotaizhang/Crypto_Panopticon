@@ -19,5 +19,7 @@
     }
 </style>
 
-<script src="../lib/connection.js"></script>
-<script src="../lib/gragh.js"></script>
+<script>
+    import * as connection from "../lib/connection";
+    connection.connect();
+</script>
