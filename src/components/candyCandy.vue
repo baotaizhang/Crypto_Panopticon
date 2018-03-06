@@ -24,8 +24,6 @@ export default {
         var socket = io.connect('http://localhost:3000');
         socket.on('node', function(data){
             gragh.append(data);
-            console.log(data);
-            console.log(data.nodes);
             for (var key in data.nodes) {
                 console.log(data.nodes[key].id);
                 
