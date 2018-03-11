@@ -8,4 +8,4 @@ candyConfig/
 node_modules/
 
 # ignore compiled
-Public/bundle.js
+Public/bundle.*
