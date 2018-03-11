@@ -26,13 +26,14 @@ module.exports = {
 }
 </script>
 
-<style scoped>
+<style>
     .links line {
-        stroke: #fff;
-        stroke-opacity: 0.1;
+        stroke:#5f9ea0;
+        stroke-opacity: 0.2;
+        stroke-width: 1;
     }
-    .nodes circle {
-        stroke: #fff;
-        stroke-width: 0.3px;
+    .nodes text {
+        pointer-events: none;
+        font: 10px sans-serif;
     }
 </style>

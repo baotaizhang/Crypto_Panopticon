@@ -23,7 +23,7 @@ function visualization(){
         .force("link", d3.forceLink().id(function (d) {return d.id;}).distance(100).strength(1))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(this.width/3, this.height / 3))
-        .velocityDecay(0.4);
+        .velocityDecay(0.9);
 
     this.ticked = function(){
         self.link
