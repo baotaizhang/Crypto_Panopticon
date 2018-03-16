@@ -20,10 +20,10 @@ function visualization(){
 
     this.colors = d3.scaleOrdinal(d3.schemeCategory10);
     this.simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function (d) {return d.id;}).distance(100).strength(1))
+        .force("link", d3.forceLink().id(function (d) {return d.id;}).distance(100))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(this.width/3, this.height / 3))
-        .velocityDecay(0.9);
+        .velocityDecay(0.99);
 
     this.ticked = function(){
         self.link
@@ -84,8 +84,13 @@ visualization.prototype.blockchainChase = function(data){
         .data(this.store.nodes)
         .enter().append("circle")
         .attr("r", function(d) { return d.size; })
-        .attr("fill", function(d) { return self.colors(d.group); })
-        .on("click", function(d) {alert(d.id)})
+        .attr("fill", function(d) { return d.colors })
+        .on("click", function(d) {
+            console.log("d.id---------------");
+            console.log(d.id);
+            this.address = d.id;
+            alert(d.id);
+        })
         .call(d3.drag()
         .on("start", self.dragstarted)
         .on("drag", self.dragged)

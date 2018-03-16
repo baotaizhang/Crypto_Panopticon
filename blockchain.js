@@ -106,7 +106,8 @@ blockchain.prototype.chase = function chase(address, socket, time){
                         gragh_data.nodes.push({
                             id : tx.recipient,
                             group : 1,
-                            size : 10
+                            size : 10,
+                            colors:"#4169e1"
                         });
                         target.push[tx.recipient]
 
@@ -114,21 +115,24 @@ blockchain.prototype.chase = function chase(address, socket, time){
                         gragh_data.nodes.push({
                             id : tx.recipient,
                             group : 1,
-                            size : 5
+                            size : 5,
+                            colors:"#2e8b57"
                         });
                         target.push[tx.recipient]
                     }else if(mosaiced.indexOf(tx.recipient) >= 0){
                         gragh_data.nodes.push({
                             id : tx.recipient,
                             group : 2,
-                            size : 10
+                            size : 10,
+                            colors:"#ff4500"
                         });
                         target.push[tx.recipient]                  
                     }else{
                         gragh_data.nodes.push({
                             id : tx.recipient,
                             group : 2,
-                            size : 5
+                            size : 5,
+                            colors:"#f0e68c"
                         });
                     }
 
@@ -164,7 +168,8 @@ blockchain.prototype.chase = function chase(address, socket, time){
                 gragh_data.nodes.push({
                     id : data.address,
                     group : 1,
-                    size : 5
+                    size : 5,
+                    colors:"#696969"
                 });
    
                 data.txs.forEach(function(tx){
