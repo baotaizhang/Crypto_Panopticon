@@ -19,7 +19,7 @@ module.exports = {
     },
     data: function () {
         return {
-            addressvalue: 'abcdeasda'
+            addressvalue: 'NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG'
         }
     },
     mounted: function () {

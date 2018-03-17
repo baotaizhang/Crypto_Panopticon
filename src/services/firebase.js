@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var moment = require('moment');
 var firebaseApi = require('firebase');
 
 function firebase(){
@@ -14,7 +15,10 @@ function firebase(){
 /* 更新系 */
 firebase.prototype.setObject = function(object, pass){
     var args = arguments;
-    firebaseApi.database().ref(pass).set(object);
+    var setObject = firebaseApi.database().ref(pass).push();
+    object.time = moment().format("YYYY-MM-DD HH:mm:ss");
+    setObject.set(object);
 };
+/* 更新系 */
 
 module.exports = firebase;
