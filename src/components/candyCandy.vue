@@ -1,6 +1,6 @@
 <template>
     <div id="candyCandy">
-        <candy-chat :address="addressvalue"></candy-chat>
+        <candy-chat :address="address"></candy-chat>
         <svg width="960" height="600" id="chase-1"></svg>
     </div>
 </template>
@@ -19,15 +19,17 @@ module.exports = {
     },
     data: function () {
         return {
-            addressvalue: 'NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG'
+            address: 'NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG'
         }
     },
     mounted: function () {
         visualizer = new Visualization();
         var self = this;
         socket.on('node', function(data){
-            visualizer.blockchainChase(data);
-        });
+            visualizer.blockchainChase(data,function(clickaddress){
+                this.address = clickaddress;
+            }.bind(this));
+        }.bind(this));
         socket.emit('chase', {address:"NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG",nemtrace:true, call : 10});
     },
     components : {

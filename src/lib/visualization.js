@@ -59,7 +59,7 @@ function visualization(){
 
 }
 
-visualization.prototype.blockchainChase = function(data){
+visualization.prototype.blockchainChase = function(data,callback){
 
     var self = this;
 
@@ -86,10 +86,8 @@ visualization.prototype.blockchainChase = function(data){
         .attr("r", function(d) { return d.size; })
         .attr("fill", function(d) { return d.colors })
         .on("click", function(d) {
-            console.log("d.id---------------");
-            console.log(d.id);
-            this.address = d.id;
             alert(d.id);
+            callback(d.id);
         })
         .call(d3.drag()
         .on("start", self.dragstarted)
