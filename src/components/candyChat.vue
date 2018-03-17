@@ -3,6 +3,11 @@
         <span>{{ address }}</span>
         <textarea class="textarea textarea--transparent" rows="3" placeholder="Comment" v-model="comment"></textarea>
         <button v-on:click="register">Register</button>
+        <ul id="example-2">
+            <li v-for="(item, index) in items">
+                {{ index }} - {{ item.usercomment }}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -14,11 +19,26 @@ module.exports = {
     props: ['address'],
     data: function () {
         return {
-            comment: 'commentABC'
+            comment: '',
+            items : []
         }
     },
     beforeCreate(){
         firebase = new firebase();
+    },
+    watch: {
+        //clickしたアドレスが変更されたら起動
+        address: function(newVal, oldVal) {
+            this.items = [];
+            firebase.childAdded("addressinfo/" + this.address,function(object){
+                this.items.push(object);
+            }.bind(this));
+        }
+    },
+    mounted: function () {
+        firebase.childAdded("addressinfo/" + this.address,function(object){
+            this.items.push(object);
+        }.bind(this));
     },
     methods: {
         register: function (event) {
