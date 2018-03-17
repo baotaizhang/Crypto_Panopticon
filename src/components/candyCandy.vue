@@ -24,7 +24,6 @@ module.exports = {
     },
     mounted: function () {
         visualizer = new Visualization();
-        var self = this;
         socket.on('node', function(data){
             visualizer.blockchainChase(data,function(clickaddress){
                 this.address = clickaddress;
