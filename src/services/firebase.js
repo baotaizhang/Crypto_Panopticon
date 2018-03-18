@@ -18,6 +18,7 @@ function firebase(){
         firebaseApi.database().ref(pass).on("child_added", function(snapshot) {
             var object = snapshot.val();
             object.key = snapshot.key;
+            object.displaytime = moment(object.time).format("MM/DD HH:mm");
             if(cb){
                 cb(object);
             }

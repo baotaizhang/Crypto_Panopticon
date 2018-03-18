@@ -1,7 +1,15 @@
 <template>
     <div id="candyCandy">
-        <candy-chat :address="address"></candy-chat>
-        <svg width="960" height="600" id="chase-1"></svg>
+        <div class="siimple-grid">
+            <div class="siimple-grid-row">
+                <div class="siimple-grid-col siimple-grid-col--6 siimple-grid-col-sm--12 siimple-grid-col-md--12 siimple-grid-col-lg--12 siimple-grid-col-xl--12">
+                    <svg width="960" height="600" id="chase-1"></svg>
+                </div>
+                <div class="siimple-grid-col siimple-grid-col--6 siimple-grid-col-sm--12 siimple-grid-col-md--12 siimple-grid-col-lg--12 siimple-grid-col-xl--12">
+                    <candy-chat :address="address"></candy-chat>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
