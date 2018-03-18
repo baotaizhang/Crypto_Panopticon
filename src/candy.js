@@ -4,10 +4,10 @@
  * I always have vue.js everywehre
  */
 
-import Vue from 'vue';
-import candyHeader from './components/candyHeader.vue';
-import candyCandy from './components/candyCandy.vue';
-import candyFooter from './components/candyFooter.vue';
+var Vue = require('vue');
+var candyHeader = require('./components/candyHeader.vue').default;
+var candyCandy = require('./components/candyCandy.vue').default;
+var candyFooter = require('./components/candyFooter.vue').default;
 
 var CandyVue = new Vue({
     el : '#candy',
